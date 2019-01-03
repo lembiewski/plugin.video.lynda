@@ -154,10 +154,10 @@ class LyndaApi:
         endpoint = '/course/{0}/{1}'.format(course_id, video_id)
         params = {
             "streamType": 1,
-            "filter.excludes": "Stream,Formats"
+            "filter.excludes": "Formats"
         }
         resp = self._get(endpoint, params).json()
-        streams = resp['PrioritizedStreams']['0']
+        streams = resp['Stream']
         for stream in streams:
             if stream['StreamType'] == 1 and stream['IsMultiBitrate'] is True:
                 return stream['URL']
